@@ -54,7 +54,7 @@ class Wildcard:
             return output
 
         input_files = files | flat_map(map_names) | dedup | sort
-        items = get_items_for_wildcard_path(input_files[0])
+        items = get_items_for_wildcard_path("**/*.txt")
 
         return {
             "required": {
