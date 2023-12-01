@@ -1,4 +1,5 @@
 from pathlib import Path
 
-module_js_directory = Path(__file__).parent / "js"
+root_directory = Path(__file__).parent
+module_js_directory = root_directory / "js"
 application_root_directory = Path(__file__).parent.parent.parent
