@@ -12,12 +12,6 @@ if "python_embeded" in sys.executable or "python_embedded" in sys.executable:
 else:
     pip_install = [sys.executable, "-m", "pip", "install"]
 
-shutil.copytree(
-    module_js_directory,
-    application_root_directory / "web" / "extensions" / "vanilla.simple.wildcard",
-    dirs_exist_ok=True,
-)
-
 
 def handle_stream(stream, is_stdout):
     stream.reconfigure(encoding=locale.getpreferredencoding(), errors="replace")
@@ -107,5 +101,16 @@ def is_requirements_installed(file_path: Path):
 
 requirements_path = root_directory / "requirements.txt"
 
-if not is_requirements_installed(requirements_path):
-    process_wrap(pip_install + ["-r", requirements_path])
+
+def ensure_requirements_installed():
+    if not is_requirements_installed(requirements_path):
+        process_wrap(pip_install + ["-r", requirements_path])
+
+
+if __name__ == "__main__":
+    shutil.copytree(
+        module_js_directory,
+        application_root_directory / "web" / "extensions" / "vanilla.simple.wildcard",
+        dirs_exist_ok=True,
+    )
+    ensure_requirements_installed()
