@@ -1,7 +1,6 @@
 import shutil
-from pathlib import Path
+from .vars import application_root_directory
 
-application_root_directory = Path(__file__).parent.parent
 shutil.rmtree(
     application_root_directory / "web" / "extensions" / "vanilla.simple.wildcard"
 )
