@@ -2,12 +2,28 @@
 
 A simple wildcard node for ComfyUI. Can also be used a style prompt node.
 
-## Where to place wildcard files
+## SimpleConcat
+
+Concats multiple text into one.
+
+### inputs
+
+- `num(INT)`: The number of inputs to concat
+- `delimeter(STRING)`: The delimeter to use
+- `input_0-9`: The inputs to concat
+
+### outputs
+
+- `output_text(STRING)`: The generated string
+
+## SimpleWildcard
+
+### Where to place wildcard files
 
 Place the wildcard files in the `wildcards` folder in the root of your comfyui directory.
 The files should end in `.txt` and each value should be on it's own line.
 
-## inputs
+### inputs
 
 - `seed(INT)`: The seed to use to choose the wildcard.
 - `control_after_generate`: What to do with the seed after queuing the prompt.
@@ -16,6 +32,6 @@ The files should end in `.txt` and each value should be on it's own line.
 - `prefix(STRING)`: The prefix to use
 - `suffix(STRING)`: The suffix to use
 
-## outputs
+### outputs
 
 - `output_text(STRING)`: The generated string
