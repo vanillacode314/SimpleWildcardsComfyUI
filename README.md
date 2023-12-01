@@ -13,6 +13,8 @@ The files should end in `.txt` and each value should be on it's own line.
 - `control_after_generate`: What to do with the seed after queuing the prompt.
 - `input_files(LIST)`: A glob for the input files to use.
 - `input_text(LIST)`: Choose a line from the files yourself or select `*` to choose at random using seed.
+- `prefix(STRING)`: The prefix to use
+- `suffix(STRING)`: The suffix to use
 
 ## outputs
 
