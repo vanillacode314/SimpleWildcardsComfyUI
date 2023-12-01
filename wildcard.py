@@ -1,12 +1,10 @@
 from pipe import where, map, dedup, sort
 from .utils import flat_map
-from pathlib import Path, PosixPath
-import os
-import folder_paths
+from pathlib import Path
 import random
+from .vars import application_root_directory
 
-application_root_directory = os.path.dirname(folder_paths.__file__)
-wildcards_directory = Path(application_root_directory) / "wildcards"
+wildcards_directory = application_root_directory / "wildcards"
 if not wildcards_directory.is_dir():
     wildcards_directory.mkdir()
 files = list(
@@ -24,7 +22,7 @@ def get_items_for_wildcard_path(glob: str):
     )
 
 
-class Wildcard:
+class SimpleWildcard:
     def __init__(self):
         pass
 
