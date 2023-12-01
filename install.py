@@ -1,5 +1,5 @@
 import shutil
-from .vars import module_js_directory, application_root_directory
+from vars import module_js_directory, application_root_directory
 
 shutil.copytree(
     module_js_directory,
