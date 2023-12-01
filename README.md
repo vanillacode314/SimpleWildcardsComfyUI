@@ -8,7 +8,6 @@ Concats multiple text into one.
 
 ### inputs
 
-- `num(INT)`: The number of inputs to concat
 - `delimeter(STRING)`: The delimeter to use
 - `input_0-9`: The inputs to concat
 
@@ -31,6 +30,7 @@ The files should end in `.txt` and each value should be on it's own line.
 - `input_text(LIST)`: Choose a line from the files yourself or select `*` to choose at random using seed.
 - `prefix(STRING)`: The prefix to use
 - `suffix(STRING)`: The suffix to use
+- `regex(STRING)`: If provided this will be used to filter the input files.
 
 ### outputs
 

@@ -6,7 +6,6 @@ class SimpleConcat:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "num": ("INT", {"default": 2, "min": 2, "max": 10}),
                 "delimeter": ("STRING", {"default": ", ", "dynamicPrompts": False}),
                 "output_text": (
                     "STRING",
@@ -16,43 +15,83 @@ class SimpleConcat:
             "optional": {
                 "input_0": (
                     "STRING",
-                    {"default": "", "dynamicPrompts": False, "multiline": True},
+                    {
+                        "forceInput": True,
+                        "default": "",
+                        "multiline": True,
+                    },
                 ),
                 "input_1": (
                     "STRING",
-                    {"default": "", "dynamicPrompts": False, "multiline": True},
+                    {
+                        "forceInput": True,
+                        "default": "",
+                        "multiline": True,
+                    },
                 ),
                 "input_2": (
                     "STRING",
-                    {"default": "", "dynamicPrompts": False, "multiline": True},
+                    {
+                        "forceInput": True,
+                        "default": "",
+                        "multiline": True,
+                    },
                 ),
                 "input_3": (
                     "STRING",
-                    {"default": "", "dynamicPrompts": False, "multiline": True},
+                    {
+                        "forceInput": True,
+                        "default": "",
+                        "multiline": True,
+                    },
                 ),
                 "input_4": (
                     "STRING",
-                    {"default": "", "dynamicPrompts": False, "multiline": True},
+                    {
+                        "forceInput": True,
+                        "default": "",
+                        "multiline": True,
+                    },
                 ),
                 "input_5": (
                     "STRING",
-                    {"default": "", "dynamicPrompts": False, "multiline": True},
+                    {
+                        "forceInput": True,
+                        "default": "",
+                        "multiline": True,
+                    },
                 ),
                 "input_6": (
                     "STRING",
-                    {"default": "", "dynamicPrompts": False, "multiline": True},
+                    {
+                        "forceInput": True,
+                        "default": "",
+                        "multiline": True,
+                    },
                 ),
                 "input_7": (
                     "STRING",
-                    {"default": "", "dynamicPrompts": False, "multiline": True},
+                    {
+                        "forceInput": True,
+                        "default": "",
+                        "multiline": True,
+                    },
                 ),
                 "input_8": (
                     "STRING",
-                    {"default": "", "dynamicPrompts": False, "multiline": True},
+                    {
+                        "forceInput": True,
+                        "default": "",
+                        "multiline": True,
+                    },
                 ),
                 "input_9": (
                     "STRING",
-                    {"default": "", "dynamicPrompts": False, "multiline": True},
+                    {
+                        "forceInput": True,
+                        "default": "",
+                        "multiline": True,
+                    },
                 ),
             },
         }

@@ -3,6 +3,7 @@ from .utils import flat_map
 from pathlib import Path
 import random
 from .vars import application_root_directory
+import re
 
 wildcards_directory = application_root_directory / "wildcards"
 if not wildcards_directory.is_dir():
@@ -46,8 +47,13 @@ class SimpleWildcard:
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xFFFFFFFFFFFFFFFF}),
                 "input_files": (input_files, {"default": input_files[0]}),
                 "input_text": (["*"] + items, {"default": "*"}),
+                "weight": ("FLOAT", {"default": 1, "min": -10, "max": 10, "step": 0.1}),
                 "prefix": ("STRING", {"default": "", "dynamicPrompts": False}),
                 "suffix": ("STRING", {"default": "", "dynamicPrompts": False}),
+                "regex": (
+                    "STRING",
+                    {"default": "*"},
+                ),
                 "output_text": (
                     "STRING",
                     {"multiline": True, "dynamicPrompts": False, "default": ""},
@@ -61,13 +67,28 @@ class SimpleWildcard:
     OUTPUT_NODE = True
 
     def func(self, *args, **kwargs):
-        items = get_items_for_wildcard_path(kwargs["input_files"])
         output_text = kwargs["input_text"]
-        if kwargs["input_text"] == "*":
-            random.seed(kwargs["seed"])
-            output_text = random.choice(items)
+
+        items = get_items_for_wildcard_path(kwargs["input_files"])
+        regex = re.compile(kwargs["regex"], re.IGNORECASE)
+        if kwargs["regex"] != "*":
+            items = list(items | where(regex.match))
+
+        has_items = len(items) > 0
+        wildcard_mode_enabled = kwargs["input_text"] == "*"
+        should_apply_weight = kwargs["weight"] != 1
+
+        if wildcard_mode_enabled:
+            if has_items:
+                random.seed(kwargs["seed"])
+                output_text = random.choice(items)
+            else:
+                output_text = ""
 
         output_text = f"{kwargs['prefix']} {output_text} {kwargs['suffix']}".strip()
+
+        if should_apply_weight:
+            output_text = f"({output_text}:{kwargs['weight']})"
 
         return {
             "ui": {"output_text": output_text},
