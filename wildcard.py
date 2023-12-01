@@ -45,7 +45,7 @@ class Wildcard:
 
         return {
             "required": {
-                "seed": ("INT", {}),
+                "seed": ("INT", {"default": 0, "min": 0, "max": 0xFFFFFFFFFFFFFFFF}),
                 "input_files": (input_files, {"default": input_files[0]}),
                 "input_text": (["*"] + items, {"default": "*"}),
                 "output_text": (
