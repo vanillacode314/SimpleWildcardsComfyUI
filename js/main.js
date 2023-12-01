@@ -24,7 +24,7 @@ app.registerExtension({
         value = newValue;
         ac?.abort();
         ac = new AbortController();
-        fetch(`/wildcards?path=${encodeURIComponent(newValue)}`, {
+        fetch(`/simple-wildcards?path=${encodeURIComponent(newValue)}`, {
           signal: ac.signal,
         })
           .then(async (res) => {

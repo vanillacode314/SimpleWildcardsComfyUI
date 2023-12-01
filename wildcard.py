@@ -77,7 +77,7 @@ from server import PromptServer
 from aiohttp import web
 
 
-@PromptServer.instance.routes.get("/wildcards")
+@PromptServer.instance.routes.get("/simple-wildcards")
 async def my_hander_method(request):
     path = request._rel_url.query["path"]
     return web.json_response({"items": ["*"] + get_items_for_wildcard_path(path)})
