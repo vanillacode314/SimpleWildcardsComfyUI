@@ -48,6 +48,8 @@ class Wildcard:
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xFFFFFFFFFFFFFFFF}),
                 "input_files": (input_files, {"default": input_files[0]}),
                 "input_text": (["*"] + items, {"default": "*"}),
+                "prefix": ("STRING", {"default": "", "dynamicPrompts": False}),
+                "suffix": ("STRING", {"default": "", "dynamicPrompts": False}),
                 "output_text": (
                     "STRING",
                     {"multiline": True, "dynamicPrompts": False, "default": ""},
@@ -66,6 +68,8 @@ class Wildcard:
         if kwargs["input_text"] == "*":
             random.seed(kwargs["seed"])
             output_text = random.choice(items)
+
+        output_text = f"{kwargs['prefix']} {output_text} {kwargs['suffix']}".strip()
 
         return {
             "ui": {"output_text": output_text},
