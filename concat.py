@@ -16,7 +16,6 @@ class SimpleConcat:
                 "input_0": (
                     "STRING",
                     {
-                        "forceInput": True,
                         "default": "",
                         "multiline": True,
                     },
@@ -24,7 +23,6 @@ class SimpleConcat:
                 "input_1": (
                     "STRING",
                     {
-                        "forceInput": True,
                         "default": "",
                         "multiline": True,
                     },
@@ -32,7 +30,6 @@ class SimpleConcat:
                 "input_2": (
                     "STRING",
                     {
-                        "forceInput": True,
                         "default": "",
                         "multiline": True,
                     },
@@ -40,7 +37,6 @@ class SimpleConcat:
                 "input_3": (
                     "STRING",
                     {
-                        "forceInput": True,
                         "default": "",
                         "multiline": True,
                     },
@@ -48,7 +44,6 @@ class SimpleConcat:
                 "input_4": (
                     "STRING",
                     {
-                        "forceInput": True,
                         "default": "",
                         "multiline": True,
                     },
@@ -56,7 +51,6 @@ class SimpleConcat:
                 "input_5": (
                     "STRING",
                     {
-                        "forceInput": True,
                         "default": "",
                         "multiline": True,
                     },
@@ -64,7 +58,6 @@ class SimpleConcat:
                 "input_6": (
                     "STRING",
                     {
-                        "forceInput": True,
                         "default": "",
                         "multiline": True,
                     },
@@ -72,7 +65,6 @@ class SimpleConcat:
                 "input_7": (
                     "STRING",
                     {
-                        "forceInput": True,
                         "default": "",
                         "multiline": True,
                     },
@@ -80,7 +72,6 @@ class SimpleConcat:
                 "input_8": (
                     "STRING",
                     {
-                        "forceInput": True,
                         "default": "",
                         "multiline": True,
                     },
@@ -88,7 +79,6 @@ class SimpleConcat:
                 "input_9": (
                     "STRING",
                     {
-                        "forceInput": True,
                         "default": "",
                         "multiline": True,
                     },
