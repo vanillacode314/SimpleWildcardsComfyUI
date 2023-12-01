@@ -15,20 +15,6 @@ files = list(
 )
 
 
-def apply_wildcard_syntax(parts: list[str]) -> list[str]:
-    output: list[str] = []
-    if len(parts) == 0:
-        return []
-    if len(parts) == 1:
-        return [parts[0], "*"]
-    if len(parts) == 2:
-        return [f"{parts[0]}/{parts[1]}", f"{parts[0]}/*", "*/*"]
-    else:
-        for part in apply_wildcard_syntax(parts[1:]):
-            output.append(f"{parts[0]}/{part}")
-    return output
-
-
 def get_items_for_wildcard_path(glob: str):
     return list(
         wildcards_directory.glob(glob)
