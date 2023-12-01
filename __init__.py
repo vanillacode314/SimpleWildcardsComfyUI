@@ -6,14 +6,11 @@
 """
 
 from .wildcard import Wildcard
-import sys
+from pathlib import Path
 import os
-import folder_paths
-
-sys.path.append(os.path.dirname(__file__))
 
 module_js_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "js")
-application_root_directory = os.path.dirname(folder_paths.__file__)
+application_root_directory = Path(__file__).parent.parent
 application_web_extensions_directory = os.path.join(
     application_root_directory, "web", "extensions", "vanilla.simple.wildcard"
 )
