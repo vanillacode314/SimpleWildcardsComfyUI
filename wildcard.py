@@ -35,8 +35,9 @@ class Wildcard:
             path_str = path.as_posix()
             output.append(path_str)
             if path_str.count("/") > 0:
-                [*start, last] = path_str.split("/")
-                output.append(f"{'/'.join(start)}/*")
+                base = path_str[: path_str.index("/")]
+                output.append(f"{base}/*.txt")
+                output.append(f"{base}/**/*.txt")
             return output
 
         input_files = files | flat_map(map_names) | dedup | sort
