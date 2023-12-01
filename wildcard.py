@@ -70,8 +70,8 @@ class SimpleWildcard:
         output_text = kwargs["input_text"]
 
         items = get_items_for_wildcard_path(kwargs["input_files"])
-        regex = re.compile(kwargs["regex"], re.IGNORECASE)
-        if kwargs["regex"] != "*":
+        if kwargs["regex"] != "*" or kwargs["regex"] != "":
+            regex = re.compile(kwargs["regex"], re.IGNORECASE)
             items = list(items | where(regex.match))
 
         has_items = len(items) > 0
