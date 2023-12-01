@@ -47,7 +47,10 @@ class SimpleWildcard:
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xFFFFFFFFFFFFFFFF}),
                 "input_files": (input_files, {"default": input_files[0]}),
                 "input_text": (["*"] + items, {"default": "*"}),
-                "weight": ("FLOAT", {"default": 1, "min": -10, "max": 10, "step": 0.1}),
+                "weight": (
+                    "FLOAT",
+                    {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.1},
+                ),
                 "prefix": ("STRING", {"default": "", "dynamicPrompts": False}),
                 "suffix": ("STRING", {"default": "", "dynamicPrompts": False}),
                 "regex": (
