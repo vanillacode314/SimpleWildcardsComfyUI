@@ -52,7 +52,7 @@ class SimpleWildcard:
                 "suffix": ("STRING", {"default": "", "dynamicPrompts": False}),
                 "regex": (
                     "STRING",
-                    {"default": "*"},
+                    {"default": ".*"},
                 ),
                 "output_text": (
                     "STRING",
