@@ -5,7 +5,10 @@ import subprocess
 import threading
 import locale
 import re
-from vars import module_js_directory, application_root_directory, root_directory
+
+root_directory = Path(__file__).parent
+module_js_directory = root_directory / "js"
+application_root_directory = Path(__file__).parent.parent.parent
 
 if "python_embeded" in sys.executable or "python_embedded" in sys.executable:
     pip_install = [sys.executable, "-s", "-m", "pip", "install"]
@@ -107,10 +110,9 @@ def ensure_requirements_installed():
         process_wrap(pip_install + ["-r", requirements_path])
 
 
-if __name__ == "__main__":
-    shutil.copytree(
-        module_js_directory,
-        application_root_directory / "web" / "extensions" / "vanilla.simple.wildcard",
-        dirs_exist_ok=True,
-    )
-    ensure_requirements_installed()
+shutil.copytree(
+    module_js_directory,
+    application_root_directory / "web" / "extensions" / "vanilla.simple.wildcard",
+    dirs_exist_ok=True,
+)
+ensure_requirements_installed()

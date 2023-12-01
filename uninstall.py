@@ -1,5 +1,9 @@
+from pathlib import Path
 import shutil
-from vars import application_root_directory
+
+root_directory = Path(__file__).parent
+module_js_directory = root_directory / "js"
+application_root_directory = Path(__file__).parent.parent.parent
 
 shutil.rmtree(
     application_root_directory / "web" / "extensions" / "vanilla.simple.wildcard"
