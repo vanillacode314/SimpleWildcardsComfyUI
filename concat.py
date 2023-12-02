@@ -14,6 +14,7 @@ class SimpleConcat:
                     {
                         "forceInput": True,
                         "default": "",
+                        "multiline": True,
                     },
                 ),
                 "input_1": (
@@ -21,6 +22,7 @@ class SimpleConcat:
                     {
                         "forceInput": True,
                         "default": "",
+                        "multiline": True,
                     },
                 ),
                 "input_2": (
@@ -28,6 +30,7 @@ class SimpleConcat:
                     {
                         "forceInput": True,
                         "default": "",
+                        "multiline": True,
                     },
                 ),
                 "input_3": (
@@ -35,6 +38,7 @@ class SimpleConcat:
                     {
                         "forceInput": True,
                         "default": "",
+                        "multiline": True,
                     },
                 ),
                 "input_4": (
@@ -42,6 +46,7 @@ class SimpleConcat:
                     {
                         "forceInput": True,
                         "default": "",
+                        "multiline": True,
                     },
                 ),
                 "input_5": (
@@ -49,6 +54,7 @@ class SimpleConcat:
                     {
                         "forceInput": True,
                         "default": "",
+                        "multiline": True,
                     },
                 ),
                 "input_6": (
@@ -56,6 +62,7 @@ class SimpleConcat:
                     {
                         "forceInput": True,
                         "default": "",
+                        "multiline": True,
                     },
                 ),
                 "input_7": (
@@ -63,6 +70,7 @@ class SimpleConcat:
                     {
                         "forceInput": True,
                         "default": "",
+                        "multiline": True,
                     },
                 ),
                 "input_8": (
@@ -70,6 +78,7 @@ class SimpleConcat:
                     {
                         "forceInput": True,
                         "default": "",
+                        "multiline": True,
                     },
                 ),
                 "input_9": (
@@ -77,6 +86,7 @@ class SimpleConcat:
                     {
                         "forceInput": True,
                         "default": "",
+                        "multiline": True,
                     },
                 ),
                 "output_text": (
