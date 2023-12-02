@@ -1,9 +1,8 @@
 from pipe import where, map, dedup, sort
 from .utils import flat_map
 from pathlib import Path
-import random
 from .vars import application_root_directory
-import re
+import re, random
 
 wildcards_directory = application_root_directory / "wildcards"
 if not wildcards_directory.is_dir():
@@ -91,7 +90,7 @@ class SimpleWildcard:
         output_text = f"{kwargs['prefix']} {output_text} {kwargs['suffix']}".strip()
 
         if should_apply_weight:
-            output_text = f"({output_text}:{kwargs['weight']})"
+            output_text = f"({output_text}:{round(kwargs['weight'], 2)})"
 
         return {
             "ui": {"output_text": output_text},
