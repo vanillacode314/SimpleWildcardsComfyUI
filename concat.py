@@ -7,10 +7,6 @@ class SimpleConcat:
         return {
             "required": {
                 "delimeter": ("STRING", {"default": ", ", "dynamicPrompts": False}),
-                "output_text": (
-                    "STRING",
-                    {"multiline": True, "dynamicPrompts": False, "default": ""},
-                ),
             },
             "optional": {
                 "input_0": (
@@ -83,6 +79,10 @@ class SimpleConcat:
                         "multiline": True,
                     },
                 ),
+                "output_text": (
+                    "STRING",
+                    {"multiline": True, "dynamicPrompts": False, "default": ""},
+                ),
             },
         }
 
@@ -96,7 +96,11 @@ class SimpleConcat:
             [
                 value
                 for key, value in kwargs.items()
-                if key.startswith("input") and value.strip() != ""
+                if key.startswith("input")
+                and value.strip() != ""
+                and value != None
+                and value != "undefined"
+                and value != "null"
             ]
         )
         return {
