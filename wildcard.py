@@ -56,6 +56,14 @@ class SimpleWildcard:
                     "STRING",
                     {"default": ".*"},
                 ),
+                "temp_override": (
+                    "STRING",
+                    {"default": ""},
+                ),
+                "output_blank_ratio": (
+                    "FLOAT",
+                    {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.05},
+                ),
                 "output_text": (
                     "STRING",
                     {"multiline": True, "dynamicPrompts": False, "default": ""},
@@ -69,21 +77,32 @@ class SimpleWildcard:
     OUTPUT_NODE = True
 
     def func(self, *args, **kwargs):
+        if kwargs["temp_override"] != "":
+            return {
+                "ui": {"output_text": kwargs["temp_override"]},
+                "result": (kwargs["temp_override"],),
+            }
+
+        rng = random.Random(kwargs["seed"])
+        if rng.random() < kwargs["output_blank_ratio"]:
+            return {
+                "ui": {"output_text": ""},
+                "result": ("",),
+            }
+
         output_text = kwargs["input_text"]
-
-        items = get_items_for_wildcard_path(kwargs["input_files"])
-        if kwargs["regex"] != "*" or kwargs["regex"] != "":
-            regex = re.compile(kwargs["regex"], re.IGNORECASE)
-            items = list(items | where(regex.match))
-
-        has_items = len(items) > 0
         wildcard_mode_enabled = kwargs["input_text"] == "*"
         should_apply_weight = kwargs["weight"] != 1
 
         if wildcard_mode_enabled:
+            items = get_items_for_wildcard_path(kwargs["input_files"])
+            if kwargs["regex"] != "*" or kwargs["regex"] != "":
+                regex = re.compile(kwargs["regex"], re.IGNORECASE)
+                items = list(items | where(regex.match))
+
+            has_items = len(items) > 0
             if has_items:
-                random.seed(kwargs["seed"])
-                output_text = random.choice(items)
+                output_text = rng.choice(items)
             else:
                 output_text = ""
 
