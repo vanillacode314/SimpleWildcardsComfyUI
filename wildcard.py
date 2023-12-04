@@ -96,7 +96,7 @@ class SimpleWildcard:
 
         if wildcard_mode_enabled:
             items = get_items_for_wildcard_path(kwargs["input_files"])
-            if kwargs["regex"] != "*" or kwargs["regex"] != "":
+            if kwargs["regex"] != ".*" or kwargs["regex"] != "":
                 regex = re.compile(kwargs["regex"], re.IGNORECASE)
                 items = list(items | where(regex.match))
 
