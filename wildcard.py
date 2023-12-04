@@ -77,10 +77,17 @@ class SimpleWildcard:
     OUTPUT_NODE = True
 
     def func(self, *args, **kwargs):
+        wildcard_mode_enabled = kwargs["input_text"] == "*"
+        should_apply_weight = kwargs["weight"] != 1
+
         if kwargs["temp_override"] != "":
+            output_text = f"{kwargs['prefix']} {kwargs['temp_override']} {kwargs['suffix']}".strip()
+
+            if should_apply_weight:
+                output_text = f"({output_text}:{round(kwargs['weight'], 2)})"
             return {
-                "ui": {"output_text": kwargs["temp_override"]},
-                "result": (kwargs["temp_override"],),
+                "ui": {"output_text": output_text},
+                "result": (output_text,),
             }
 
         rng = random.Random(kwargs["seed"])
@@ -91,8 +98,6 @@ class SimpleWildcard:
             }
 
         output_text = kwargs["input_text"]
-        wildcard_mode_enabled = kwargs["input_text"] == "*"
-        should_apply_weight = kwargs["weight"] != 1
 
         if wildcard_mode_enabled:
             items = get_items_for_wildcard_path(kwargs["input_files"])
