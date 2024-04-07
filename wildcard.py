@@ -11,6 +11,7 @@ files = list(
     wildcards_directory.glob("**/*.txt")
     | map(lambda x: x.relative_to(wildcards_directory))
 )
+item_map = dict()
 
 
 def get_items_for_wildcard_path(glob: str):
@@ -55,6 +56,10 @@ class SimpleWildcard:
                 "regex": (
                     "STRING",
                     {"default": ".*"},
+                ),
+                "exclude_regex": (
+                    "STRING",
+                    {"default": ""},
                 ),
                 "temp_override": (
                     "STRING",
@@ -104,6 +109,9 @@ class SimpleWildcard:
             if kwargs["regex"] != ".*" or kwargs["regex"] != "":
                 regex = re.compile(kwargs["regex"], re.IGNORECASE)
                 items = list(items | where(regex.match))
+            if kwargs["exclude_regex"] != "":
+                regex = re.compile(kwargs["exclude_regex"], re.IGNORECASE)
+                items = list(items | where(lambda x: not regex.match(x)))
 
             has_items = len(items) > 0
             if has_items:
