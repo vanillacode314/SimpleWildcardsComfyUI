@@ -3,6 +3,7 @@ from .utils import flat_map
 from pathlib import Path
 from .vars import application_root_directory
 import re, random
+import functools
 
 wildcards_directory = application_root_directory / "wildcards"
 if not wildcards_directory.is_dir():
@@ -14,6 +15,7 @@ files = list(
 item_map = dict()
 
 
+@functools.lru_cache(maxsize=12)
 def get_items_for_wildcard_path(glob: str):
     return list(
         wildcards_directory.glob(glob)
