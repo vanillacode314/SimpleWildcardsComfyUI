@@ -15,7 +15,7 @@ files = list(
 item_map = dict()
 
 
-@functools.lru_cache(maxsize=12)
+@functools.lru_cache()
 def get_items_for_wildcard_path(glob: str):
     return list(
         wildcards_directory.glob(glob)
