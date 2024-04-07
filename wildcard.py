@@ -16,12 +16,16 @@ item_map = dict()
 
 
 @functools.lru_cache()
-def get_items_for_wildcard_path(glob: str):
+def get_items_for_wildcard_path(glob: str, regex: str = ".*", exclude_regex: str = ""):
     return list(
         wildcards_directory.glob(glob)
         | where(lambda path: path.is_file())
         | flat_map(lambda path: path.read_text("utf-8").splitlines())
         | dedup
+        | where(
+            lambda x: re.search(regex, x, re.IGNORECASE)
+            and (exclude_regex == "" or not re.search(exclude_regex, x, re.IGNORECASE))
+        )
     )
 
 
@@ -107,14 +111,9 @@ class SimpleWildcard:
         output_text = kwargs["input_text"]
 
         if wildcard_mode_enabled:
-            items = get_items_for_wildcard_path(kwargs["input_files"])
-            if kwargs["regex"] != ".*" or kwargs["regex"] != "":
-                regex = re.compile(kwargs["regex"], re.IGNORECASE)
-                items = list(items | where(regex.match))
-            if kwargs["exclude_regex"] != "":
-                regex = re.compile(kwargs["exclude_regex"], re.IGNORECASE)
-                items = list(items | where(lambda x: not regex.match(x)))
-
+            items = get_items_for_wildcard_path(
+                kwargs["input_files"], kwargs["regex"], kwargs["exclude_regex"]
+            )
             has_items = len(items) > 0
             if has_items:
                 output_text = rng.choice(items)
