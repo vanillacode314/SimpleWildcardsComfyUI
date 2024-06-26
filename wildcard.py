@@ -12,6 +12,12 @@ files = list(
     wildcards_directory.glob("**/*.txt")
     | map(lambda x: x.relative_to(wildcards_directory))
 )
+if len(files) == 0:
+    (wildcards_directory / "example.txt").write_text("black\nwhite")
+    files = list(
+        wildcards_directory.glob("**/*.txt")
+        | map(lambda x: x.relative_to(wildcards_directory))
+    )
 item_map = dict()
 
 
