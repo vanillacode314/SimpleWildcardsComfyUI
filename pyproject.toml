@@ -2,7 +2,7 @@
 name = "simplewildcardscomfyui"
 description = "A simple wildcard node for ComfyUI. Can also be used a style prompt node."
 version = "1.0.2"
-license = "MIT"
+license = { text = "MIT License" }
 dependencies = ["pipe==2.2"]
 
 [project.urls]
